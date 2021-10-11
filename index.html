@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <script src="app.js" defer></script>
+  <!-- <link type="text/css" rel="stylesheet" href="css/reset.css"> -->
+  <title>Vertellis</title>
+</head>
+<body class="flex-column">
+  <header>
+      <h1>Vertellis</h1>
+  </header>
+  <main class="flex-column">
+      <form action="">
+          <div class="form-section">
+            <h2>How long would you like to play?</h2>
+            <input type="radio" name="game-duration" id="15-min" value="15">
+            <label for="15-min">15 minutes</label>
+            <input type="radio" name="game-duration" id="30-min" value="30"> 
+            <label for="30-min">30 minutes</label>
+            <input type="radio" name="game-duration" id="50-min" value="50">
+            <label for="50-min">50 minutes</label>
+         </div>
+         <div class="form-section">
+            <h2>What type of conversation do you want to have?</h2>
+            <input type="radio" name="game-tone" id="casual" value="casual">
+            <label for="casual">Casual</label>
+            <input type="radio" name="game-tone" id="mindful" value="mindful"> 
+            <label for="mindful">Mindful</label>
+            <input type="radio" name="game-tone" id="deep" value="deep">
+            <label for="deep">Deep</label>
+        </div>
+        <button type="button" id="game-start">Let's play!</button>
+    </form>
+  </main>
+  <footer>
+       <p>© Vertellis 2021</p>
+  </footer>
+</body>
+</html>

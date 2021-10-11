@@ -1,0 +1,15 @@
+body {
+    text-align: center;
+    height: 100vh;
+    justify-content: space-between;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form > * + * {
+    margin-top: 3rem;
+}
