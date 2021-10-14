@@ -14,24 +14,32 @@
   </header>
   <main class="flex-column">
       <form action="">
-          <div class="form-section">
-            <h2>How long would you like to play?</h2>
+          <label for="players-num">Number of players</label>
+          <select name="players-num" id="players-num">
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+          <fieldset class="form-section">
+            <legend>How long would you like to play?</legend>
             <input type="radio" name="game-duration" id="15-min" value="15">
             <label for="15-min">15 minutes</label>
             <input type="radio" name="game-duration" id="30-min" value="30"> 
             <label for="30-min">30 minutes</label>
             <input type="radio" name="game-duration" id="50-min" value="50">
             <label for="50-min">50 minutes</label>
-         </div>
-         <div class="form-section">
-            <h2>What type of conversation do you want to have?</h2>
+          </fieldset>
+         
+          <fieldset class="form-section">
+            <legend>What type of conversation do you want to have?</legend>
             <input type="radio" name="game-tone" id="casual" value="casual">
             <label for="casual">Casual</label>
             <input type="radio" name="game-tone" id="mindful" value="mindful"> 
             <label for="mindful">Mindful</label>
             <input type="radio" name="game-tone" id="deep" value="deep">
             <label for="deep">Deep</label>
-        </div>
+          </fieldset>
+       
         <button type="button" id="game-start">Let's play!</button>
     </form>
   </main>
