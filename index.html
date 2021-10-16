@@ -13,7 +13,8 @@
       <h1>Vertellis</h1>
   </header>
   <main class="flex-column">
-      <section>
+    <!-- intro screen -->
+      <section id="intro">
         <form action="">
           <fieldset>
             <legend>Who's playing?</legend>
@@ -42,9 +43,14 @@
             <input type="radio" name="game-tone" id="deep" value="deep">
             <label for="deep">Deep</label>
           </fieldset>
-       
-        <button type="button" id="game-start">Let's play!</button>
-    </form>
+          <button type="button" id="game-start">Let's play!</button>
+        </form>
+      </section>
+      <section id="game" hidden>
+        <h2>Here'e a question for</h2>
+        <div>
+          <p></p>
+        </div>
 
       </section>
       
