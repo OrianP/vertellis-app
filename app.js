@@ -42,8 +42,11 @@ function getInputVals(inputName) {
 }
 
 function displayPlayerName() {
-        pNameDisplay.textContent = p1;
-    
+        if (pNameDisplay.textContent === '' || pNameDisplay.textContent === p2) {
+            pNameDisplay.textContent = p1;
+        } else {
+            pNameDisplay.textContent = p2;
+        }    
 }
 
 function hide(el) {
@@ -53,5 +56,13 @@ function hide(el) {
 function display(el) {
     el.removeAttribute('hidden');
 }
+
+// Game screen
+const nextBtn = document.querySelector('.next-btn');
+
+// Event listeners
+nextBtn.addEventListener('click', () => {
+    displayPlayerName();
+})
 
 
