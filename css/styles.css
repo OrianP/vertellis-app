@@ -13,3 +13,7 @@ body {
 form > * + * {
     margin-top: 3rem;
 }
+
+.player-name {
+    color: rgb(104, 7, 7);
+}

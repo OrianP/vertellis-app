@@ -1,20 +1,26 @@
+// Screens
+const introScreen = document.querySelector('#intro');
+const gameScreen = document.querySelector('#game');
+const insightScreen = document.querySelector('#insight');
+
 // Intro screen
+const pNameDisplay = document.querySelector('.player-name');
 // players 1 and 2 names
 let p1 = 'p1';
 let p2 = 'p2';
 let gameDuration = 'game-duration';
 let gameTone = 'game-tone';
-const introScreen = document.querySelector('#intro');
-const gameScreen = document.querySelector('#game');
+
 
 // game start button
 const startBtn = document.querySelector('#game-start');
 
 // Event listeners
 startBtn.addEventListener('click', () => {
-    assignVals;
+    assignVals();
     hide(introScreen);
     display(gameScreen);
+    displayPlayerName();
 });
 
 // Functions
@@ -35,6 +41,11 @@ function getInputVals(inputName) {
     return document.querySelector(`input[name="${inputName}"]`).value;
 }
 
+function displayPlayerName() {
+        pNameDisplay.textContent = p1;
+    
+}
+
 function hide(el) {
     el.setAttribute('hidden', true);
 }
@@ -42,3 +53,5 @@ function hide(el) {
 function display(el) {
     el.removeAttribute('hidden');
 }
+
+
