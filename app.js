@@ -60,6 +60,9 @@ startBtn.addEventListener('click', () => {
 
     // deal the first card
     // iterate set and access card strings
+    // grab card text element
+    const cardText = document.querySelector('#card-text');
+    console.log(cardText);
     // set card element textContent to card string
 
     // next button in game screen
