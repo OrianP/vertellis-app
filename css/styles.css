@@ -17,3 +17,9 @@ form > * + * {
 .player-name {
     color: rgb(104, 7, 7);
 }
+
+#game-title {
+    border: transparent;
+    width: 70%;
+    border-bottom: 1px solid gray;
+}

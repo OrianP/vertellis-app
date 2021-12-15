@@ -2,6 +2,8 @@
 const introScreen = document.querySelector('#intro');
 const gameScreen = document.querySelector('#game');
 const insightScreen = document.querySelector('#insight');
+hide(gameScreen);
+hide(insightScreen);
 // game start button on intro screen
 const startBtn = document.querySelector('#game-start');
 // player name display on game screen
@@ -88,8 +90,13 @@ startBtn.addEventListener('click', () => {
             cardText.textContent = 'Well done! You have completed a round of Vertellis'
         }
     })
-
+    
+    // grab game title in insight screen
+    const gameTitle = insightScreen.querySelector('#game-title');
+    gameTitle.value = `${p1} and ${p2}'s conversation on ${formatDate()}`;
 });
+
+
 
 // Helper functions
 // think about how to abstract this further to take in any number of arguments and assign each with it's relevant radioVals
@@ -124,4 +131,11 @@ function hide(el) {
 
 function display(el) {
     el.removeAttribute('hidden');
+}
+
+function formatDate() {
+    // get current date
+    const date = new Date();
+    // format i.e 15/12/2021
+    return `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
 }
