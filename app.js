@@ -16,7 +16,20 @@ let gameDuration = 'game-duration';
 let gameTone = 'game-tone';
 
 // cards arrays
-const casual = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const casual =
+ ['What kind of joint sporting activity would you like to make a habit?',
+  'What healthy habit do you want to introduce into your life in the near future?',
+  'What recent achievement of your partner are you most proud of?',
+  'How can you make your partner\'s day a little more beautiful tomorrow?',
+  'Which holiday or short trip is currently at the top of your wishlist?',
+  'What would make a household task easier or more pleasant for you?',
+  'For who or what could you do something nice together?', 
+  'In which outfit would you love to see your partner (again) and which should (finally) be tossed in the trash?', 
+  'What makes your relationship unique, and how has this been expressed lately?',
+  'What was a memorable shared activity recently?', 
+  'When, in recent weeks/months, did you have the most fun with your partner?', 
+  'What would you like to do together more often?'];
+
 const mindful = [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
 const deep =  [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36];
 
@@ -95,7 +108,6 @@ startBtn.addEventListener('click', () => {
     const gameTitle = insightScreen.querySelector('#game-title');
     gameTitle.value = `${p1} and ${p2}'s conversation on ${formatDate()}`;
 });
-
 
 
 // Helper functions
