@@ -2,6 +2,7 @@ body {
     text-align: center;
     height: 100vh;
     justify-content: space-between;
+    font-family: 'Roboto', sans-serif;
 }
 
 .flex-column {
@@ -22,4 +23,18 @@ form > * + * {
     border: transparent;
     width: 70%;
     border-bottom: 1px solid gray;
+}
+
+.card {
+    height: 400px;
+    width: 400px;
+    border: 3px dashed rgb(133, 8, 8);
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#card-text {
+    padding: 10px;
 }
