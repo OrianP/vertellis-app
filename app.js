@@ -100,7 +100,8 @@ startBtn.addEventListener('click', () => {
             dealtCardsCount++;
         } else {
             nextBtn.textContent = 'End game';
-            cardText.textContent = 'Well done! You have completed a round of Vertellis'
+            gameScreen.querySelector('h2').textContent = 'Well done!'
+            cardText.textContent = 'You have completed a round of Vertellis'
         }
     })
     
