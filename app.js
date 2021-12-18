@@ -3,7 +3,7 @@ const introScreen = document.querySelector('#intro');
 const gameScreen = document.querySelector('#game');
 const insightScreen = document.querySelector('#insight');
 hide(gameScreen);
-// hide(insightScreen);
+hide(insightScreen);
 // game start button on intro screen
 const startBtn = document.querySelector('#game-start');
 // player name display on game screen
