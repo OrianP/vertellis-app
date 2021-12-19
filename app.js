@@ -3,7 +3,7 @@ const introScreen = document.querySelector('#intro');
 const gameScreen = document.querySelector('#game');
 const insightScreen = document.querySelector('#insight');
 hide(gameScreen);
-hide(insightScreen);
+// hide(insightScreen);
 // game start button on intro screen
 const startBtn = document.querySelector('#game-start');
 // player name display on game screen
@@ -123,13 +123,13 @@ saveBtn.addEventListener('click', (e) => {
     const title = insightScreen.querySelector('#game-title').value;
     const body = insightScreen.querySelector('textarea').value;
     console.log({title, body});
-    // save to local storage as object 
-    window.localStorage.setItem('savedInsight', JSON.stringify({date: new Date(), title: title, body: body}));   
-    // Figure out how to save insights without overriding previous ones
+    // save to local storage as object with current date and milliseconds as unique key
+    window.localStorage.setItem(new Date(), JSON.stringify({date: new Date(), title: title, body: body}));   
+    
 
     // create new element in insights dashboard to display insight card with date, title and body
     // use localStorage.getItem with JSON.parse on the object and access each value
-    const savedInsight = JSON.parse(localStorage.getItem('savedInsight'));
+    const savedInsight = JSON.parse(localStorage.getItem(new Date()));
     // test displaying item from local storage
     const displayTest = document.createElement('p');
     displayTest.textContent = savedInsight.body;
