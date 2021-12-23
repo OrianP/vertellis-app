@@ -5,6 +5,10 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+h1 {
+    color:rgb(104, 7, 7)
+}
+
 .flex-column {
     display: flex;
     flex-direction: column;

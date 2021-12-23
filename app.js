@@ -1,9 +1,17 @@
+// key for local storage
+const key = new Date();
+
 // screens
 const introScreen = document.querySelector('#intro');
 const gameScreen = document.querySelector('#game');
 const insightScreen = document.querySelector('#insight');
+const dashboardScreen = document.querySelector('#dashboard');
+
+// hide all screens 
 hide(gameScreen);
 hide(insightScreen);
+hide(dashboardScreen);
+
 // game start button on intro screen
 const startBtn = document.querySelector('#game-start');
 // player name display on game screen
@@ -14,6 +22,13 @@ let p2 = 'p2';
 // variables assigned to 'name' attribute of input
 let gameDuration = 'game-duration';
 let gameTone = 'game-tone';
+let dashboard = [];
+
+// get items stored in local storage
+// returns a dashboard array of objects with saved insights from local storage
+getLocalStorage();
+// build dashboard in DOM
+buildDashboard(dashboard);
 
 // cards arrays
 const casual =
@@ -109,36 +124,71 @@ startBtn.addEventListener('click', () => {
     const gameTitle = insightScreen.querySelector('#game-title');
     // set game title to player names and current date
     gameTitle.value = `${p1} and ${p2}'s conversation on ${formatDate()}`;
-
 });
 
 // move this into event listener above?
 // grab save button from insights screen
 const saveBtn = insightScreen.querySelector('input[type="submit"]');
-console.log(saveBtn);
+
 // add event listener
 saveBtn.addEventListener('click', (e) => {
     e.preventDefault();
     // grab title and body 
     const title = insightScreen.querySelector('#game-title').value;
     const body = insightScreen.querySelector('textarea').value;
-    console.log({title, body});
-    // save to local storage as object 
-    window.localStorage.setItem('savedInsight', JSON.stringify({date: new Date(), title: title, body: body}));   
-    // Figure out how to save insights without overriding previous ones
+    // push insight object to dashboard array
+    if (title && body) {
+        dashboard.push({date: new Date(), title: title, body: body});
+    }
 
-    // create new element in insights dashboard to display insight card with date, title and body
-    // use localStorage.getItem with JSON.parse on the object and access each value
-    const savedInsight = JSON.parse(localStorage.getItem('savedInsight'));
-    // test displaying item from local storage
-    const displayTest = document.createElement('p');
-    displayTest.textContent = savedInsight.body;
-    insightScreen.append(displayTest);
+    // save to local storage 
+    // dashboard is an array of objects
+    // savedInsights is the local storage key
+    window.localStorage.setItem('savedInsights', JSON.stringify(dashboard)); 
+
+    console.log(dashboard);
+    // rebuild dashboard to include saved insight  
+    buildDashboard(dashboard);
+    // hide insight screen
+    hide(insightScreen);
+    // display dashboard
+    display(dashboardScreen);
+
 })
 
+// Functions //
 
+// retrieve items from local storage 
+function getLocalStorage() {
+    // use localStorage.getItem with JSON.parse on the object and access each value
+    let savedInsights = window.localStorage.getItem('savedInsights');
+    if (savedInsights !== null) {
+        dashboard = JSON.parse(savedInsights);
+        return dashboard;
+    }
+}
 
-// Helper functions
+// display dashboard in DOM
+function buildDashboard(dashboard) {
+    // clear existing dashboard to avoid duplication
+    removeAllChildNodes(dashboardScreen);
+
+    // dashboard is an array of objects
+    dashboard.forEach((item) => {
+        // create new element in insights dashboard to display insight card with date, title and body
+        const insightCard = document.createElement('div');
+        const cardTitle = document.createElement('p');
+        const cardBody = document.createElement('p');
+    
+        cardTitle.textContent = item.title;
+        cardBody.textContent = item.body;
+        // append title and body to card
+        insightCard.append(cardTitle, cardBody); 
+        // append card to dashboard
+        dashboardScreen.append(insightCard);
+    })
+}
+
 // think about how to abstract this further to take in any number of arguments and assign each with it's relevant radioVals
 function assignVals() {
     p1 = getInputVals(p1);
@@ -178,4 +228,10 @@ function formatDate() {
     const date = new Date();
     // format i.e 15/12/2021
     return `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
+}
+
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
 }
