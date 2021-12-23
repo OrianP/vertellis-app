@@ -1,11 +1,17 @@
 // key for local storage
 const key = new Date();
+
 // screens
 const introScreen = document.querySelector('#intro');
 const gameScreen = document.querySelector('#game');
 const insightScreen = document.querySelector('#insight');
+const dashboardScreen = document.querySelector('#dashboard');
+
+// hide all screens 
 hide(gameScreen);
-// hide(insightScreen);
+hide(insightScreen);
+hide(dashboardScreen);
+
 // game start button on intro screen
 const startBtn = document.querySelector('#game-start');
 // player name display on game screen
@@ -18,7 +24,8 @@ let gameDuration = 'game-duration';
 let gameTone = 'game-tone';
 let dashboard = [];
 
-// update dashboard with saved insights from local storage
+// get items stored in local storage
+// returns a dashboard array of objects with saved insights from local storage
 getLocalStorage();
 // build dashboard in DOM
 buildDashboard(dashboard);
@@ -138,15 +145,20 @@ saveBtn.addEventListener('click', (e) => {
     // dashboard is an array of objects
     // savedInsights is the local storage key
     window.localStorage.setItem('savedInsights', JSON.stringify(dashboard)); 
-    // call build dashboard again here?   
+
+    console.log(dashboard);
+    // rebuild dashboard to include saved insight  
     buildDashboard(dashboard);
+    // hide insight screen
+    hide(insightScreen);
+    // display dashboard
+    display(dashboardScreen);
+
 })
 
+// Functions //
 
-
-// Helper functions
-
-// retrieve items from local storage and display on dashboard
+// retrieve items from local storage 
 function getLocalStorage() {
     // use localStorage.getItem with JSON.parse on the object and access each value
     let savedInsights = window.localStorage.getItem('savedInsights');
@@ -156,27 +168,26 @@ function getLocalStorage() {
     }
 }
 
+// display dashboard in DOM
 function buildDashboard(dashboard) {
+    // clear existing dashboard to avoid duplication
+    removeAllChildNodes(dashboardScreen);
+
+    // dashboard is an array of objects
     dashboard.forEach((item) => {
-        console.log(item);
+        // create new element in insights dashboard to display insight card with date, title and body
+        const insightCard = document.createElement('div');
+        const cardTitle = document.createElement('p');
+        const cardBody = document.createElement('p');
+    
+        cardTitle.textContent = item.title;
+        cardBody.textContent = item.body;
+        // append title and body to card
+        insightCard.append(cardTitle, cardBody); 
+        // append card to dashboard
+        dashboardScreen.append(insightCard);
     })
 }
-// put the code below inside buildDashboard function
-
-// grab dashboard screen
-    // const dashboard = document.querySelector('#dashboard');
-    // // create new element in insights dashboard to display insight card with date, title and body
-    // const insightCard = document.createElement('div');
-    // const cardTitle = document.createElement('p');
-    // const cardBody = document.createElement('p');
-    
-    // cardTitle.textContent = savedInsight.title;
-    // cardBody.textContent = savedInsight.body;
-    // // append title and body to card
-    // insightCard.append(cardTitle, cardBody); 
-    // // append card to dashboard
-    // dashboard.append(insightCard);
-
 
 // think about how to abstract this further to take in any number of arguments and assign each with it's relevant radioVals
 function assignVals() {
@@ -219,3 +230,8 @@ function formatDate() {
     return `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
 }
 
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
