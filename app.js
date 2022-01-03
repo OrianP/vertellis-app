@@ -8,6 +8,7 @@ const insightScreen = document.querySelector('#insight');
 const dashboardScreen = document.querySelector('#dashboard');
 
 // hide all screens 
+hide(introScreen);
 hide(gameScreen);
 hide(insightScreen);
 hide(dashboardScreen);
