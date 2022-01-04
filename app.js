@@ -1,16 +1,32 @@
-// key for local storage
-const key = new Date();
-
 // screens
+const landingScreen = document.querySelector('#landing');
 const introScreen = document.querySelector('#intro');
 const gameScreen = document.querySelector('#game');
 const insightScreen = document.querySelector('#insight');
 const dashboardScreen = document.querySelector('#dashboard');
 
 // hide all screens 
+hide(introScreen);
 hide(gameScreen);
 hide(insightScreen);
 hide(dashboardScreen);
+
+// LANDING SCREEN //
+
+// get landing screen buttons
+const landingBtns = landingScreen.querySelectorAll('button');
+
+// click event listener for each button
+landingBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        // display relevant tab based on data attribute 
+        display(document.querySelector(`#${btn.dataset.target}`));
+        // hide landing screen
+        hide(landingScreen);
+    })    
+})
+
+// INTRO SCREEN //
 
 // game start button on intro screen
 const startBtn = document.querySelector('#game-start');
@@ -125,6 +141,8 @@ startBtn.addEventListener('click', () => {
     // set game title to player names and current date
     gameTitle.value = `${p1} and ${p2}'s conversation on ${formatDate()}`;
 });
+
+// INSIGHT SCREEN //
 
 // move this into event listener above?
 // grab save button from insights screen
